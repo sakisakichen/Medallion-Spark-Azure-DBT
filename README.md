@@ -20,12 +20,12 @@ This dataset includes data for scenarios such as manufacturing, sales, purchasin
         https://adb-3245733125902016.16.azuredatabricks.net/?o=3245733125902016#secrets/createScope  
         
 
-(2) Azure Key Vault(secret value of data container) add DNS Name & Resource ID to Databricks  
+(2) Azure Key Vault(secret value of data container): add DNS Name & Resource ID to Databricks  
        Key Vault properties find Vault URI for DNS Name & Resource ID 
 
 (3) Create Compute Cluster 
     
-(4) Mount all the storage accounts to Databricks
+(4) Mount all the storage accounts to DBFS (Databricks File System) 
 
 ```python
 dbutils.fs.mount(
@@ -45,6 +45,14 @@ dbutils.fs.mount(
     mount_point = '/mnt/gold',
     extra_configs = {'fs.azure.account.key.medallionsaki.blob.core.windows.net':dbutils.secrets.get('DataBricksScope','StorageAccountKey')}
 )
+```
+
+```python
+dbutils.fs.ls('/mnt/bronze')
+
+```
+
+
 # Define widgets
 dbutils.widgets.text('fileName', '', 'File Name')
 dbutils.widgets.text('table_schema', '', 'Table Schema')
