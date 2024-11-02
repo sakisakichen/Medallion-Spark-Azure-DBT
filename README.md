@@ -52,7 +52,7 @@ dbutils.fs.ls('/mnt/bronze')
 
 ```
 
-
+```python
 # Define widgets
 dbutils.widgets.text('fileName', '', 'File Name')
 dbutils.widgets.text('table_schema', '', 'Table Schema')
