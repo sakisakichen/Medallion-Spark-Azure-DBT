@@ -1,27 +1,33 @@
+## Project Intro 
+This project complete data engineering pipeline using Apache Spark, Azure Databricks, and Data Build Tool (DBT) on the Azure cloud platform.   
+This solution guides the process from data ingestion into the lakehouse, through data integration with Azure Data Factory (ADF), and finally to data transformation using Databricks and DBT
 
 
+## Project Architecture 
+![image](https://github.com/user-attachments/assets/621477c1-438a-41ff-b00c-de5353ee21db)
 
-source dbt_env_310/bin/activate
-pip install dbt-databricks
+## Data Source 
+The data used in this project is sample data (AdventureWorksLT) from an Azure SQL Database.   
+It represents a fictional bicycle manufacturer, Adventure Works Cycles, and reflects various online transaction processing scenarios.
 
+Included Scenarios:
+This dataset includes data for scenarios such as manufacturing, sales, purchasing, product management, contact management, and human resources.
 
-pip install databricks-cli
+##  Databricks Configure 
+<details>
+<summary> </summary>
+(1) Databricks Secrets Create Scope  
+        https://adb-3245733125902016.16.azuredatabricks.net/?o=3245733125902016#secrets/createScope  
+        
 
-databricks configure --token
+(2) Azure Key Vault(secret value of data container) add DNS Name & Resource ID to Databricks  
+       Key Vault properties find Vault URI for DNS Name & Resource ID 
 
-                 https://adb-3245733125902016.16.azuredatabricks.net
+(3) Create Compute Cluster 
+    
+(4) Mount all the storage accounts to Databricks
 
-                 dapi56db420b7f453d0589e7a1008ec993ad-3
-
-databricks secrets list-scopes
-databricks fs ls
-
-
-dat init medallion_dbt_spark
-
-
-Data Bricks Notebook 
-"""  
+```python
 dbutils.fs.mount(
     source= 'wasbs://bronze@medallionsaki.blob.core.windows.net',
     mount_point = '/mnt/bronze',
@@ -61,4 +67,34 @@ spark.sql(f"""
           USING PARQUET 
           LOCATION '/mnt/bronze/{fileName}/{tableSchema}.{tableName}.parquet'
           """)
-"""  
+```
+
+
+</details>
+
+
+
+##  DBT Command
+
+
+
+
+
+databricks configure --token
+
+                 https://adb-3245733125902016.16.azuredatabricks.net
+
+                 dapi56db420b7f453d0589e7a1008ec993ad-3
+
+databricks secrets list-scopes
+databricks fs ls
+
+
+dat init medallion_dbt_spark
+
+
+```
+
+```
+## Reference 
+https://github.com/airscholar/modern-data-eng-dbt-databricks-azure/blob/main/README.md
