@@ -13,7 +13,11 @@ It represents a fictional bicycle manufacturer, Adventure Works Cycles, and refl
 Included Scenarios:
 This dataset includes data for scenarios such as manufacturing, sales, purchasing, product management, contact management, and human resources.
 
-##  Databricks Configure 
+## Fetch Data on ADF 
+(1) Data fetch from SQL database by Lookup <br>
+(2) Copy data and store into Gen2 bronze folder  <br>
+
+##  Databricks Configure & connect to ADF
 <details>
 <summary> </summary>
 (1) Databricks Secrets Create Scope  <br>
@@ -51,6 +55,9 @@ dbutils.fs.mount(
 dbutils.fs.ls('/mnt/bronze')
 
 ```
+(5) Connect to ADF  <br>
+(5-1) Link service create  <br>
+Databaricks URL provide & Access Token( Databricks user setting- preferences to generate new token)  <br>
 
 ```python
 # Define widgets
