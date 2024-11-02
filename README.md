@@ -16,12 +16,12 @@ This dataset includes data for scenarios such as manufacturing, sales, purchasin
 ##  Databricks Configure 
 <details>
 <summary> </summary>
-(1) Databricks Secrets Create Scope  
-        https://adb-3245733125902016.16.azuredatabricks.net/?o=3245733125902016#secrets/createScope  
+(1) Databricks Secrets Create Scope  <br>
+    https://adb-3245733125902016.16.azuredatabricks.net/?o=3245733125902016#secrets/createScope
         
 
 (2) Azure Key Vault(secret value of data container): add DNS Name & Resource ID to Databricks  
-       Key Vault properties find Vault URI for DNS Name & Resource ID 
+      ` Key Vault properties find Vault URI for DNS Name & Resource ID `
 
 (3) Create Compute Cluster 
     
