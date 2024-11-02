@@ -53,12 +53,12 @@ dbutils.fs.mount(
 
 ```python
 dbutils.fs.ls('/mnt/bronze')
-
 ```
+
 (5) Connect to ADF  <br>
 (5-1) Link service create  <br>
 Databaricks URL provide & Access Token( Databricks user setting- preferences to generate new token)  <br>
-
+(5-2) Dump data into Databricks
 ```python
 # Define widgets
 dbutils.widgets.text('fileName', '', 'File Name')
@@ -83,33 +83,40 @@ spark.sql(f"""
           LOCATION '/mnt/bronze/{fileName}/{tableSchema}.{tableName}.parquet'
           """)
 ```
-
-
 </details>
 
 
 
-##  DBT Command
+##  DBT Core Set up & DBT Command
 
+<details>
+<summary> </summary>
 
-
-
+```
+pip install dbt-databricks
+pip install databricks-cli
 
 databricks configure --token
 
-                 https://adb-3245733125902016.16.azuredatabricks.net
+                 databricks host:  https://adb-3245733125902016.16.azuredatabricks.net
 
-                 dapi56db420b7f453d0589e7a1008ec993ad-3
+                 token: (new token generated on databricks user setting- preferences )
 
 databricks secrets list-scopes
 databricks fs ls
-
-
 dat init medallion_dbt_spark
 
-
 ```
 
 ```
+dbt run # for running models
+dbt test # for tests
+dbt snapshot # for snapshotting and slowly changing dimensions
+dbt docs generate # for documentation
+dbt docs serve # for documentation preview
+```
+</details>
+
+
 ## Reference 
 https://github.com/airscholar/modern-data-eng-dbt-databricks-azure/blob/main/README.md
